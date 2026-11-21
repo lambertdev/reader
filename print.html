@@ -1,0 +1,1098 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>读书笔记</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="Lambert 的读书笔记：读过的书，留下的字。">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">读书笔记</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://reader.lambert.wang" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <hr />
+<h2>title: "README"
+status: public
+date: 2025-07-20</h2>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2>title: "决策的艺术"
+status: public
+date: 2025-07-20</h2>
+<h1 id="决策的艺术"><a class="header" href="#决策的艺术">决策的艺术</a></h1>
+<blockquote>
+<p>[!NOTE]</p>
+<p><strong>阅读时间</strong>： 2025年1月</p>
+<p><strong>作者</strong>：约翰S.哈蒙德、拉尔夫L.基尼、霍华德•雷法</p>
+</blockquote>
+<ul>
+<li>
+<p>明智的选择应当可以让自己“掌控局面”，包括</p>
+<ul>
+<li>定义<strong>正确</strong>的决策问题</li>
+<li>细化目标</li>
+<li>找出创造性的备选方案</li>
+<li>权衡利弊 --&gt; 决策的目的是在不完美的各种可能性中做出聪明的选择</li>
+<li>澄清不确定性</li>
+<li>考虑风险承受力</li>
+<li>考虑相关联的决策</li>
+<li>避免各种心理因素影响，例如“决策初期闪过的念头”</li>
+</ul>
+</li>
+<li>
+<p>决策问题定义</p>
+<ul>
+<li>机遇往往藏在困难之中</li>
+<li>定义问题时
+<ul>
+<li>问问自己是什么触发了决策，你为什么要考虑它</li>
+<li>需要注意，问题题面本身可能让你产生偏见
+<ul>
+<li>问题的定义往往包括了缩小你的选择范围的限制条件。</li>
+<li>例如，老板让你选择哪个电邮软件包，但是其实真的问题是“如何有效管理公司直邮项目”</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>定义问题目标</p>
+<ul>
+<li>决策者定义目标时：往往将注意力狭窄范围内，注重短期，忽略长期，忽略真正目标</li>
+<li>方法
+<ul>
+<li>编写愿望清单</li>
+<li>设想怎样向他人解释你的选择，怎样证明他的合理性</li>
+<li>得到根本目标：不停问自己“为什么”，并回答，直到问不出来为止</li>
+<li>只有根本目标才能被用于评估和比较备选方案</li>
+<li>决策后，问问自己是否自己喜欢这个选择。
+<ul>
+<li>如果不喜欢，可能错误阐述了目标</li>
+</ul>
+</li>
+<li>目标不应该受到数据的易用性和可用性限制</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>备选方案</p>
+<ul>
+<li>因为人的<strong>懒惰心理</strong>和<strong>对习惯的依赖</strong>
+<ul>
+<li>大部分人习惯把自己限制在有限的方案内</li>
+<li>或者选择第一个可能的方案</li>
+<li>或者依赖于他人提供的方案</li>
+</ul>
+</li>
+<li>迟疑不决，不利于做出明智之选 （等待中会错过机会，也跟懒惰心理有关）</li>
+<li><em><strong>很多方案的局限是自己假想的，不一定存在</strong></em></li>
+<li>要先进行独立思考</li>
+<li>不断唤醒潜意识，潜意识也在思考提供灵感，要赶紧记下来，避免忘掉细节</li>
+<li>备选方案要适合问题
+<ul>
+<li><strong>过程备选方案</strong>：决策过程（选举，仲裁等）</li>
+<li><strong>双赢备选方案</strong>：根据对方决策目标，找到双赢点</li>
+<li><strong>信息收集备选方案</strong>：货比三家，市场调查</li>
+<li><strong>延缓时间备选方案</strong>：必要时，推迟某项决策，争取更多时间。但是要准备好一些机会错失的代价</li>
+</ul>
+</li>
+<li>因为<strong>十全十美的方案不存在</strong> 要知道什么时候停止，一般回答以下所有问题为Yes即可：
+<ul>
+<li>是否已经努力合适的备选方案</li>
+<li>是否对方案感到满意</li>
+<li>是否想了很多方案，与其他方案大相径庭（有充分发挥你的创造力）</li>
+<li>是否决策的其他要素也会使你划掉一定时间和经历</li>
+<li>是否把时间花在其他决策或者活动上更有创造力？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>用结果描述备选方案</p>
+<ul>
+<li>用同一个且与目标有相关的标尺给结果打分</li>
+<li>不要过分重视数据（只因为他们容易得到），需要足够重视无法用数据度量的目标</li>
+<li>充分利用可用信息</li>
+<li>直接到最终方案的一种折中是：先试后买</li>
+</ul>
+</li>
+<li>
+<p>取舍</p>
+<ul>
+<li>
+<p>用等价置换简化决策，置换前要多收集信息</p>
+</li>
+<li>
+<p>删除对比上和某一个选项明显有劣势的选项</p>
+</li>
+<li>
+<p>接受不确定性因素，精明的选择也有糟糕的结局（或者反之）</p>
+</li>
+<li>
+<p>利用风险预测简化与不确定性因素有关的决策（概率加权决策树）</p>
+<ul>
+<li>每个人的风险承受能力不同</li>
+</ul>
+<p><img src="2025/images/decisiontree.jpeg" alt="决策树" title="**决策树**" /></p>
+</li>
+<li>
+<p>根据渴求度做筛选 （<em><strong>并非所有决策都要这么做，对人生最重要的一些问题可以这样操作</strong></em>）</p>
+<ul>
+<li>对所有结局的渴求程度打分</li>
+<li>计算每种结局对对应备选方案总体渴求程度的贡献</li>
+<li>计算总的渴求分，比较，并做出选择</li>
+<li>画渴求曲线和风险承受力关联，解决渴求分没有考虑风险承受力的问题，帮助决策</li>
+</ul>
+</li>
+</ul>
+<p><img src="2025/images/DesireCurve.jpeg" alt="渴求曲线" title="**渴求曲线**" /></p>
+<ul>
+<li>风险处理办法
+<ul>
+<li>分摊风险</li>
+<li>寻求降低风险的信息</li>
+<li>分散风险 （不要把鸡蛋放在一个篮子里）</li>
+<li>对冲风险</li>
+<li>对风险投保</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>决策是 <em><strong>决策-学习-再决策-再学习</strong></em> 的过程</p>
+</li>
+<li>
+<p>警惕如下心理陷阱</p>
+<ul>
+<li><strong>先入为主</strong>： 靠多从不同角度思考问题，多独立思考来避免他人意见对你形成先入为主的印象，咨询他人不要表达意见避免自己对别人形成先入为主的印象</li>
+<li><strong>保持现状</strong>：大量心理实验表明，人们依赖现状而不愿打破它（例如，汽车是<em>不用马拉的马车</em>）
+<ul>
+<li>牢记目标，与现状对比</li>
+<li>仔细思考其他选择</li>
+<li><strong>不要夸大改变现状需要付出的努力和代价</strong></li>
+</ul>
+</li>
+<li><strong>沉没成本陷阱</strong>（例如，不愿意卖掉亏损的股票）
+<ul>
+<li>做任何决策时，都得自觉将一切沉没成本排除在外，它们会干扰思考</li>
+<li><strong>检讨以前错误决策，看看自己为什么受困扰，勇敢解决问题</strong></li>
+<li>安排轮换不同的人做决策</li>
+</ul>
+</li>
+<li><strong>只看自己想要的：证实性陷阱</strong> ：人们总是被自己喜欢的事务吸引。咨询意见时，不要提诱导性问题</li>
+<li><strong>错误的提问方式：框架性陷阱</strong>： “祈祷时能抽烟吗？” v.s. “抽烟时能祈祷吗？”
+<ul>
+<li>参照物不同，给人造成的印象就不同。所以<strong>不要轻易接受提给你问题的框架</strong></li>
+</ul>
+</li>
+<li><strong>过于自信</strong>
+<ul>
+<li>避免先入为主</li>
+<li>勇于质疑专家</li>
+</ul>
+</li>
+<li><strong>焦虑于印象深刻的事件：记忆陷阱</strong>：一朝被蛇咬十年怕井绳。
+<ul>
+<li>尽量获取客观数据</li>
+<li>仔细检查自己的假设前提，确保错误记忆没有影响自己思维</li>
+</ul>
+</li>
+<li><strong>忽略相关信息：基础比率陷阱</strong>： “不擅长社交”是对某个男性的描述，他更可能是图书管理员还是推销员。其实是推销员男性基数更大，但是人们更倾向于把推销员和社交关联</li>
+<li><strong>歪曲概率和估计结果：谨慎陷阱</strong>：过于谨慎把比率从1%提到1/20
+<ul>
+<li>诚实不掺水分的预测估计</li>
+<li>对信息提供者强调需要客观信息</li>
+</ul>
+</li>
+<li><strong>试图寻找不存在的规律：企图猜透随机现象</strong> 和 <strong>巧合神秘化：惊奇陷阱</strong>
+<ul>
+<li>不要试图看透和预测纯随机事件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><em><strong>刻意练习</strong></em></p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2>title: "简报技巧"
+status: public
+date: 2025-07-20</h2>
+<h1 id="简报技巧"><a class="header" href="#简报技巧">简报技巧</a></h1>
+<blockquote>
+<p>[!NOTE]</p>
+<p>职场简报技巧课学习记录</p>
+</blockquote>
+<h2 id="制定简报目的"><a class="header" href="#制定简报目的">[制定简报目的]</a></h2>
+<ul>
+<li>主词+动词+时间副词： 谁什么时间做什么</li>
+<li>问题，答案，行动</li>
+<li>职场中简报目的，无非就是：
+<ul>
+<li>让老板帮你做事</li>
+<li>让老板知道你有做事</li>
+</ul>
+</li>
+</ul>
+<h2 id="分析听众"><a class="header" href="#分析听众">[分析听众]</a></h2>
+<ul>
+<li>
+<p>PACK原则</p>
+<ul>
+<li><strong>P</strong>ersonality
+<ul>
+<li>Boss: 不在乎技术细节，在乎钱 -- 不要过高估计他们的知识，不要低估他们的智慧</li>
+<li>中阶：在于绩效指标</li>
+<li>初阶同仁：在乎对个人的好处</li>
+</ul>
+</li>
+<li><strong>A</strong>ttitute
+<ul>
+<li>支持: How</li>
+<li>中立: How and why</li>
+<li>反对: Why</li>
+</ul>
+</li>
+<li><strong>C</strong>ircumstance</li>
+<li><strong>K</strong>nowledge
+<ul>
+<li>知识背景决定简报内容呈现细节的多少</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>“一场简报的成败，八成在台下”</p>
+<ul>
+<li>不了解听众特点或者需要知道什么
+<ul>
+<li>直接问</li>
+<li>间接问</li>
+</ul>
+</li>
+<li>人性：和有关人士要先讨论过，否则感到不被尊重</li>
+</ul>
+</li>
+<li>
+<p>对听众要能“诱之以利，动之以情，危之以害”</p>
+</li>
+</ul>
+<h2 id="简报架构"><a class="header" href="#简报架构">[简报架构]</a></h2>
+<ul>
+<li>确定<strong>目的</strong></li>
+<li>点明<strong>要点</strong></li>
+<li><strong>素材，手法</strong>支撑</li>
+<li>最重要的东西放在最前面</li>
+</ul>
+<h3 id="状况报告"><a class="header" href="#状况报告">状况报告</a></h3>
+<ul>
+<li>Action --&gt; 做什么</li>
+<li>Process --&gt; 苦劳</li>
+<li>Profit --&gt; 功劳</li>
+</ul>
+<h3 id="提案说明"><a class="header" href="#提案说明">提案说明</a></h3>
+<ul>
+<li>Situation --&gt; 挑战</li>
+<li>Impact --&gt; 冲击</li>
+<li>Question --&gt; 困境
+<ul>
+<li>Why --&gt; 分析原因</li>
+</ul>
+</li>
+<li>Solution --&gt; 突破
+<ul>
+<li>What --&gt; 方案内容</li>
+<li>Who/Where --&gt; 分配资源</li>
+</ul>
+</li>
+</ul>
+<h3 id="资讯分享"><a class="header" href="#资讯分享">资讯分享</a></h3>
+<ul>
+<li>Conclusion</li>
+<li>Before</li>
+<li>After</li>
+</ul>
+<h2 id="ppt内容"><a class="header" href="#ppt内容">[PPT内容]</a></h2>
+<ul>
+<li>开场白： “语不惊人死不休”
+<ul>
+<li>趣闻</li>
+<li>引证事实</li>
+<li>相反意见</li>
+<li>引用名句</li>
+<li>激发问题</li>
+<li>引述历史</li>
+<li>惊人叙述</li>
+<li>类比对照</li>
+</ul>
+</li>
+<li>主体
+<ul>
+<li>VERA原则
+<ul>
+<li>Visible: 24号字体以上</li>
+<li>Errorless: 仔细检查</li>
+<li>Relevant:我们的<strong>常见问题是资料太多而不是太少</strong>
+<ul>
+<li>内容有关 --&gt; PPT正文</li>
+<li>无关--&gt; 不进PPT</li>
+<li>可能有关 --&gt; Appendix</li>
+</ul>
+</li>
+<li>Attractive: 慢慢修炼基本功</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>结论
+<ul>
+<li>和正文呼应</li>
+</ul>
+</li>
+</ul>
+<h2 id="临场处理"><a class="header" href="#临场处理">[临场处理]</a></h2>
+<h3 id="姿势语调动作"><a class="header" href="#姿势语调动作">姿势语调动作</a></h3>
+<ul>
+<li>内容7%，语调38%，表情和肢体动作55%</li>
+<li>姿势能站着就不要坐着： 心理上高度决定权威性</li>
+</ul>
+<h3 id="回答问题"><a class="header" href="#回答问题">回答问题</a></h3>
+<ul>
+<li>短问题
+<ul>
+<li>有明确答案，直接给答案</li>
+</ul>
+</li>
+<li>长问题
+<ul>
+<li>有可能是对方不知道自己要问什么</li>
+<li>也有可能对方是借着问题表达不同意见</li>
+<li>处理上
+<ul>
+<li>确认问题</li>
+<li>谢谢提问： 谢谢给我再次说明的机会</li>
+<li>回答问题</li>
+<li>确认答案被接受</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="处理反对意见"><a class="header" href="#处理反对意见">处理反对意见</a></h3>
+<p>把握人性</p>
+<ul>
+<li>这样或许也OK --&gt; 人最喜欢自己，其次是和自己意见相同的人</li>
+<li>给对方台阶下 --&gt; 人不喜欢认错</li>
+<li>先处理心情，再处理事情</li>
+<li>先贴近，再转移
+<ul>
+<li>感性（软）
+<ul>
+<li>Feel</li>
+<li>Felt</li>
+</ul>
+</li>
+<li>理性（硬）
+<ul>
+<li>Found</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2>title: "活着"
+status: public
+date: 2025-07-20</h2>
+<h1 id="活着"><a class="header" href="#活着">活着</a></h1>
+<blockquote>
+<p>我靠《活着》活着 -- 余华</p>
+</blockquote>
+<p>虽活着是种体验，但很多时候《活着》的主人公徐福贵体验是巨大的痛苦。</p>
+<ul>
+<li>祖上留下的殷实家业，被他年少时赌博败光，气死同样是败家子的爹，自己成了赌博庄家的佃户。</li>
+<li>尽管嫖娼赌博败光家业，结发妻子家珍（城里米行家小姐）不离不弃，带着一儿一女跟他过苦日子。</li>
+<li>娘生病去城里找医生，被国军抓壮丁扛大炮，直到解放军把他俘虏才又被放回家。</li>
+<li>回家见到妻子儿女，却发现女儿凤霞高烧变成哑巴。</li>
+<li>庆幸的是打地主时，自己因为已经是佃户反而逃过一劫。</li>
+<li>听话的儿子（宁愿光着脚也不愿意走山路上学磨烂鞋子）有庆读了书，却因为积极献血给市长妻子，被庸医抽血抽死。</li>
+<li>市长是自己扛大炮时走丢的小战友春生，在红卫兵折磨下自杀。因为儿子有庆之死不肯原谅春生的家珍在春生自杀前却给春生说“你要活着”</li>
+<li>因是哑巴的无人肯娶的凤霞，和老实本分的城里偏头搬运工二喜喜结连理，恩爱有加，邻居家人赞不绝口。</li>
+<li>凤霞因为生儿子苦根难产而死，家珍也因长期的重病加此打击离世，剩下爷孙三人相依为命。</li>
+<li>二喜因为工地事故被两块石板压死。</li>
+<li>唯一的依靠外孙苦根被黄豆噎死。</li>
+</ul>
+<p>如此，主人公福贵带着自己买的老黄牛“福贵”坚强的<strong>活着</strong>。</p>
+<p>这故事描述地令人动容，读书期间也难以抑制为这苦难的经历落泪。甚至不敢想自己是否有勇气有毅力能承受住这一切？但是至少认识到，自己生活如此已足够幸运，没有理由将时间花在对生活的不满足，更多的<strong>体验活着</strong>。</p>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2>title: "一句顶一万句"
+status: public
+date: 2025-07-20</h2>
+<h1 id="一句顶一万句"><a class="header" href="#一句顶一万句">一句顶一万句</a></h1>
+<blockquote>
+<p>[!NOTE]</p>
+<p><strong>阅读时间</strong>： 2025年1月</p>
+<p><strong>作者</strong>：刘震云</p>
+</blockquote>
+<p>上半部《出延津记》：主要写吴摩西，也叫杨摩西，也叫杨百顺的故事。</p>
+<p>下半部《回延津记》：主要写牛爱国，也是“吴摩西找自己跟人私奔老婆时丢的继女巧玲的儿子”的故事。</p>
+<p>而这两个故事的核心，是人和人要能说得上话，怎么也不会厌，可以抛掉一切私奔去，晚上可以和情人一直说下去不睡觉；要是说不上话了，就是相看两相厌，别扭到宁愿去当“鸡”也不给人当老婆。</p>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2>title: "食南之徒"
+status: public
+date: 2025-07-20</h2>
+<h1 id="食南之徒"><a class="header" href="#食南之徒">食南之徒</a></h1>
+<blockquote>
+<p>[!NOTE]</p>
+<p><strong>阅读时间</strong>： 2025年2月</p>
+<p><strong>作者</strong>：马伯庸</p>
+<p><strong>类型</strong>：小说</p>
+</blockquote>
+<p>本故事来自史记中的一段记载</p>
+<blockquote>
+<p>《史记&lt;七十列传·西南夷列传&gt;》：</p>
+<p>建元六年，大行王恢击东越，东越杀王郢以报。恢因兵威使番阳县令 唐蒙风指晓南越。南越食蒙蜀枸酱，蒙问所从来，曰“道西北牂柯，牂(Zang)柯江广数里，出番(Pan)禺城下”。</p>
+<p>蒙归至长安，问蜀贾人，贾人曰：“独蜀出枸酱，多持窃出市夜郎。夜郎者，临牂柯江，江广百馀步，足以行船。南越以财物役属夜郎，西至同师，然亦不能臣使也。”</p>
+<p>蒙乃上书说上曰：“南越王黄屋左纛(Dao)，地东西万馀里，名为外臣，实一州主也。今以长沙、豫章往，水道多绝，难行。窃闻夜郎所有精兵，可得十馀万，浮船牂柯江，出其不意，此制越一奇也。诚以汉之强，巴蜀之饶，通夜郎道，为置吏，易甚。”</p>
+<p>上许之。乃拜蒙为郎中将，将千人，食重万馀人，从巴蜀筰(Zuo/)关入，遂见夜郎侯多同。蒙厚赐，喻以威德，约为置吏，使其子为令。夜郎旁小邑皆贪汉缯(Zeng)帛，以为汉道险，终不能有也，乃且听蒙约。还报，乃以为犍为郡。发巴蜀卒治道，自僰(Bo)道指牂柯江。
+蜀人司马相如亦言西夷邛、筰可置郡。使相如以郎中将往喻，皆如南夷，为置一都尉，十馀县，属蜀。</p>
+</blockquote>
+<p>大汉武帝时期，主人公汉使唐蒙因一罐蜀枸酱探寻到夜郎国通往番禺之路，带领汉军从水路兵临番禺城（今广州），灭掉南越国。按照作家本人后记中的说法：<strong>因为一种食物而被灭国，这大概是中国历史上唯一的一例</strong>。</p>
+<p>作家从此记载，脑洞大开，拓展了蜀枸酱来历，以小人物（甘蔗，卓长生等）的视角记录，让历史不再单单是史书记载的恢弘往事，而是包含了众多小人物的悲欢离合和被时代洪流冲刷的无奈。</p>
+<p>书中给我印象最深的地方是后记部分的思考。明明是简单的地理关系，古人怎么会想不到？殊不知这是古代人凭借勇气、谋略、地理直觉开创，经历了相当长的历史时期才能演化而来的。于我辈而言，这是专属现代人的福利。</p>
+<p>故事不长，继承了《太白金星有点烦》《长安的荔枝》等书轻松愉快的风格，短短两三个小时就能读完。推荐片段时间阅读。</p>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2>title: "认知觉醒"
+status: public
+date: 2025-07-20</h2>
+<h1 id="认知觉醒"><a class="header" href="#认知觉醒">认知觉醒</a></h1>
+<blockquote>
+<p>[!NOTE]</p>
+<p><strong>阅读时间</strong>： 2025年3月</p>
+<p><strong>作者</strong>：周岭</p>
+</blockquote>
+<p>开始阅读本书是因为自序中如下一段话击中了我：</p>
+<blockquote>
+<p>大多数人发现自己并没有变得特别，而是在不断地服从社会规则和应对生活烦恼，开始随波逐流：该玩手机玩手机、该打游戏打游戏；没有多少压力，也没有多少动力；<strong>觉得反正日子还过得去，希望也还在心里，偶尔挣扎呐喊一声，而后继续做着短视的选择</strong>，沉溺于眼前的安逸。然后他们不得不敲碎那颗高傲的心，在无奈和叹息中默默接受平庸的人生。</p>
+</blockquote>
+<p>以上可以说是这个世界大部分人的写照。作者恍然清醒，开始对认知的探索的年纪是36岁。</p>
+<p>自己刚好与作者彼时年龄相仿，也正好面临类似的人生彷徨：两地分居，对未来充满迷茫，过度焦虑，却又找不到改变的办法，常常把经理投入到一些触手可及的短期快乐。</p>
+<p>作者从底层逻辑剖析了原因，总结了一些正确学习成长的理论，并分享了提高专注力和行动力的方法。</p>
+<h3 id="底层逻辑"><a class="header" href="#底层逻辑">底层逻辑</a></h3>
+<p>以下是书中剖析的一些底层逻辑。</p>
+<p>**为什么人会明明知道有些重要的事情必须做，却又趋易避难，倾向于选择做那些容易得到即时性满足的事情？**这是由人类的三重大脑决定的：</p>
+<ul>
+<li>3.6亿年前，为了适应陆地生活，爬行动物进化出了最原始的<strong>本能脑</strong>，可以对环境迅速做出本能反应。</li>
+<li>2亿年前，哺乳动物为了更好地适应环境，进化出了拥有恐惧、兴奋、愉悦等情绪反应的<strong>情绪脑</strong>。</li>
+<li>直到人类登场，进化出了可以理性思考的<strong>理智脑</strong></li>
+</ul>
+<p>人类或者人类的祖先进化出本能脑和情绪脑的历史悠久，导致这两者力量强大，更能左右人类做出选择。相对而言，理智脑产生的时间段，力量相对于前两者更像是未成熟的婴儿。从另外一个角度解释：人类趋易避难是刻在基因中的，要动用理智脑工作是需要消耗更多能量的。</p>
+<p>书中说我们生活中做的大部分决策都是基于本能和情绪，而非理智。这里联想到自己做的股票投资决策：有多少次是有深入研究了要购买的公司后做出的？即使有深入研究了解某个公司，购买其股票的时间点又有多少次是理智做出的选择？好像真的大部分是本能和情绪催生自己所作的选择。</p>
+<p>习惯之所以难以改变，就是因为其自我巩固的：越用越强。人的真正成长就是增强理智脑的力量，用理智脑驱动情绪脑和本能脑工作，克服天性的过程。</p>
+<p><strong>焦虑的根由是什么？</strong></p>
+<ul>
+<li>想同时做很多事，又想立即看到效果</li>
+<li>欲望大于能力，又缺乏耐心</li>
+</ul>
+<p>这仍然是人的天性造成的。想要解决焦虑，需要和自己的天性和解（不必较劲），直面焦虑，克制欲望（要事优先），了解和接受自己的能力，并适当时突破它。</p>
+<p><strong>为什么自己好像很努力，却又看不到实质的改变？</strong></p>
+<ul>
+<li>首先 ，这个问题本身也体现着人类的天性，缺乏耐心。</li>
+<li>其次，任何事物看到实质的改变都是量变到质变积累的过程。</li>
+<li>再次，也许你的努力只是看起来努力，只是停留在表层学习，用战术上的勤奋来掩盖战略上的懒惰。</li>
+</ul>
+<p>人类的天性缺乏耐心，所以一些“XX天瘦身”，“XXX干货整理”类文章、视频非常卖座（作者还举了金庸武侠的例子，其中主角往往一夜速成神功，成为大侠，惩恶扬善，这正是匹配了人类希望速成的心理）。</p>
+<p>因为事物的改变是量变到质变的积累，而人类又缺乏耐心，所以当付出的努力看不到明显结果时，往往会半途而废。关于例子，可以回想下自己立过的无数个flag。</p>
+<p>表层学习是并非能让人真的进步的学习，或许只是人们在自己舒适区的往复运动，看似每天打卡坚持某件事情，也能看到明显的效果，但是真正的成长却很少。例如：</p>
+<ul>
+<li>自己总觉得有在读书，但是往往过后就忘，跟没有读过一样。这是因为自己缺少了思考、行动、改变的过程。仅仅积累量是没有意义的。</li>
+<li>自己坚持在锻炼，但是好像体重停留在某个地方就不动了，但是好像腹部也没有太大的变化。这是因为对自己要求不高，同时没有在每次锻炼时尝试突破自己能力的极限。</li>
+</ul>
+<p><strong>意识分层理论</strong></p>
+<p>为了更好生存，人类进化出了意识分层：</p>
+<ul>
+<li>潜意识：负责生理系统。我这边理解为感性的直觉</li>
+<li>意识：负责社会系统。我这边理解为理性的分析</li>
+</ul>
+<p>潜意识很多时候可以帮助人们快速察觉感知到一些意识尚未察觉到的东西：例如可以帮助我们识别自己的喜好，察觉到潜在的危险。例如：个人感受就是很多时候自己第一印象对某些人不喜欢不认可，那么大概率后续的交往中其真的和自己就合不来。</p>
+<p>书中建议我们善用潜意识：用感性、潜意识来帮自己做选择，而用理性的意识帮助自己思考。致迷茫的自己：也许自己早已有了人生目标的种子，但是它并没有成长。可以用潜意识来找到它，并用理性浇灌它成长。可以参考《美好人生运营指南》中对寻找人生使命的6个问题。</p>
+<ul>
+<li>这个世界有很多事情可以做，你最想帮助哪些人？</li>
+<li>什么事情让你废寝忘食？</li>
+<li>你在做什么事情的时候最让自己感动？</li>
+<li>你最让人感动的时刻是什么？</li>
+<li>如果没有任何经理压力，你会如何度过余生？</li>
+<li>闲暇的时候，你关注最多的是哪方面的信息？</li>
+</ul>
+<p><strong>元认知</strong></p>
+<p>元认知是指人跳脱身体之外观察分析自己，通俗的讲这就是人对自我的反思。</p>
+<p>反省反思有被动的也有主动的。被动反思只有当自己有遇到问题时才进行，大部分人属于此类。而主动反思才是人可以可以跃升觉醒的关键。孟子讲"吾日三省吾身"，讲的也是这个道理。</p>
+<p>高级的元认知——时刻帮你从高处、深处、远处看待现在的自己，让自己保持清醒、不迷失，保持动力、不懈怠，保持平和、不冲动。</p>
+<p>提升元认知，可以通过冥想，刻意练习。当需要做选择的时候，可以停下来进行思考，激活自己的理智脑而拒绝让情绪脑和本能脑左右自己的选择。</p>
+<p>做事情前应该先理清思路，消除模糊。拒绝想也不想就行动，产生"自己有认真努力"的自我感动。没有计划的努力其实没有意义。</p>
+<p><strong>如何提升专注力</strong></p>
+<p>提升专注力，做事情时身心合一。</p>
+<p>但是怎么克服分心？分心走神的原因无非两个：一是觉得当下太无聊，所以追求更有意思的事情；二是觉得当下太痛苦，于是追求更舒适的事情。因为身体受困于现实，只好让思想天马行空。</p>
+<p>保持专注一个重要的方法就是始终在拉伸区练习。拉伸区是指那些对自己来说困难但是通过努力是可以完成的事情。突破拉伸区的过程，就是沉浸专注的过程。突破后是有成就感和满足感的。好的成长是始终游走在“舒适区边缘"。</p>
+<p>始终在困难区，会因为太难而焦虑，从而分神。</p>
+<p>始终在舒适区，会因为太容易而厌倦，从而分神。</p>
+<p>一件事情很复杂而太难的时候，应该要先理清思路，拆解任务，规划逐步完成。规划拆解的过程就是消除模糊的过程，也是把任务从困难区转移到拉伸区的过程。</p>
+<p>反之很多时候我们没有成长，是因为我们一直在舒适区努力。这时就应该提炼任务，例如:把目标从读一本书，变成读一本书并用自己的感受写出读书笔记，挑出最打动自己的部分加以实践。</p>
+<p><strong>深度学习</strong></p>
+<p>此处深度学习不是人工智能的深度学习，这里是指</p>
+<p>学习不是浅尝辄止，不是仅仅看他人提炼的干货。比较好的状态是把干货当做筛选优秀内容的入口，找到优秀的内容阅读原文，获取一手知识。</p>
+<p>需要注意的是阅读原文原书也是不够的，而真正的成长则是不断实践掌握到的书中知识，即"笃行之"。更进一步，重要的是能否用自己的现有知识清楚地解释书中的内容，用现有知识解释新知识的过程其实是自己融会贯通的过程。</p>
+<p>融会贯通代表着你建立起了自己的知识体系，有能力将自己掌握的（甚至毫不相干的领域）知识关联起来。</p>
+<p>学习知识的时候可以保持开放的心态，但只学习能够触动自己的知识，因为这是你的情绪脑作用下的潜意识帮你做出的筛选。这些刚好可以打动你的新知识，往往就处于你知识的拉伸区。这种知识往往最能和自己的知识体系建立连接。</p>
+<p>朋友圈打卡可能只是伪学习伪成长。设置过难得目标会让人为了完成打卡而敷衍了事，或者直接放弃。相反应该只设置下限而不设置上限，一种方法是把目标设置地简单到不可能失败</p>
+<p>人们中断或者放弃某个学习的原因是自己没有得到正向的反馈，即没有满足情绪脑的需求。反馈学习就是将自己的学习成果写下来，讲出去，得到反馈，倒逼自己进一步学习和理解。</p>
+<p>反馈可能是有负面的，需要冷静对待打击，打击可能也是个人成长的机会。错误的评论证明评论人与你层次不同，大可一笑而过；正确的打击是你提升的契机。但无论如何，应该避免分享半成品，分享那些自己细心打磨过的内容。</p>
+<p><strong>主动休息</strong></p>
+<p>一个真正的自控高手，不是一个只知道冲刺的人，而是一个善于主动休息、保持平衡的人。</p>
+<p>强迫自己在精力最旺盛最专注时，做最重要的事，增强正向反馈回路。作者经验分享是用分时日程表来安排自己的一天（这会不会太繁琐，而且是相当于给自己设定太困难的下限要求而无法完成？）</p>
+<p><strong>想清楚</strong></p>
+<p>你陷入怠惰、懒散、空虚的情绪中动弹不得时，往往是因为你的大脑处于模糊状态。</p>
+<p>工作中任务分解，用脑图理清思路都是想清楚的过程。</p>
+<p><strong>动起来</strong></p>
+<p>不要惧怕做不好，一开始做不好是正常的。避免因为看不到短期成效而放弃。</p>
+<p>不发生真正改变的学习都是无效的学习。所以一定要实践自己学习的知识，将它变成为你的经验。</p>
+<p>在这个世界上，知而不行的人实在太多了，只要你有所行动，就可以超越一大批人</p>
+<p>less is more。少做事，甚至不做事。我时常站在一生的高度去审视自己真正要做的是什么，然后打破思维定式，拒绝所有那些即使不去做天也不会塌下来的事情。真正的行动力高手不是有能耐在同一时间做很多事的人，而是会想办法避免同时做很多事的人。</p>
+<p>从不同的角度看待问题，保持开放心态谨慎思维定式。向下兼容：很痛苦。要么一笑而过，要么耐心解释清楚。不要不明就里发泄情绪, 这只会对人带来负面影响。事情也不会办好。</p>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2>title: "芯片战争"
+status: public
+date: 2025-07-20</h2>
+<h1 id="芯片战争"><a class="header" href="#芯片战争">芯片战争</a></h1>
+<blockquote>
+<p>[!NOTE]</p>
+<p><strong>阅读时间</strong>： 2025年3月</p>
+<p><strong>作者</strong>：克里斯.米勒</p>
+</blockquote>
+<p>无论您是否是芯片产业从业者，本书都是一本非常棒值得一读的芯片发展史的科普书籍。作为芯片行业的从业者，本人也对整个行业产生了更为清晰的认知。</p>
+<p>本书阐述了芯片是如何影响二战之后世界格局的重塑。包括了苏联解体、在美国参与的战争中半导体芯片如何影响战局、在竞争格局中日本，韩国和中国台湾的半导体产业先后崛起，以及芯片战贸易战中东大的面临的挑战和困境。</p>
+<p>本书以时间线顺序,描绘了各个芯片业巨头诸如AT&amp;T，德州仪器、英特尔、英伟达、高通、苹果、卡尔蔡司、阿斯麦、索尼、佳能、三星、台积电、联发科、中芯国际、华为等如何通过技术创新，一步一步改变世界的。</p>
+<p>书中记录了安迪格鲁夫，盛田昭夫，威廉肖克利，杰克基尔比，戈登摩尔，张忠谋，罗伯特诺伊斯，杰伊.莱斯罗普等一众芯片业大佬在各芯片业巨头改变世界过程中发挥的作用。</p>
+<p>感触最深的一些内容：</p>
+<p>芯片产业，是当今世界最具技术精密度的产业。其核心基础原理却并非难以理解。例如：</p>
+<ul>
+<li>半导体可以导电，是因为掺杂后的硅被施加电流后电子的移动</li>
+<li>光刻的原理，是用光线通过倒置的显微镜照射光刻胶，最后将材料蚀刻到硅片上。</li>
+</ul>
+<p>也就是说<strong>任何复杂的系统都是来自最基础的原理和物件</strong>。</p>
+<p>书中推荐序提到到我们的第三个错误认知是“我们应该独立自主”，这点实在不敢苟同：</p>
+<p>美国打压对手，扶持新的国家（敌人的敌人）是其惯例：</p>
+<ul>
+<li>日本战后靠美国支持迅速发展起其半导体产业。DRAM产业凭借高质量低成本占据一哥位置，让英特尔不得不转型，美国也因此重新找了扶持对象：韩国</li>
+<li>光刻机产业扶持起ASML亦是如此</li>
+</ul>
+<p>美国发起的针对我国的围堵，是会被其坚决贯彻下去的。<strong>独立自主、技术为王发展创新才是我国的唯一出路</strong>。</p>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2>title: "比山更高：自由攀登者的悲情与荣耀"
+status: public
+date: 2025-07-20</h2>
+<h1 id="比山更高自由攀登者的悲情与荣耀"><a class="header" href="#比山更高自由攀登者的悲情与荣耀">比山更高：自由攀登者的悲情与荣耀</a></h1>
+<blockquote>
+<p><strong>阅读时间</strong>： 2025年7月</p>
+<p><strong>作者</strong>：宋明蔚</p>
+</blockquote>
+<p>这本书介绍了自由攀岩者这么一个小众的群体。从中也初步了解什么叫做 Alplism（阿式攀登），和喜马拉雅式商业攀登的不同。</p>
+<p>读完此书，惊叹于自由攀登者的各种各样的身份，其中有不少高考状元、大学教师这样身份的人。更让我惊叹的是自由攀登所面临的危险如此之多（包括雪崩、失温、大风、岩缝等），有如此高的死亡率。而最让我惊叹的是自由攀登者的对征服、自由、挑战的执着与热爱 （尽管死亡率有如此之高）。</p>
+<p>书中介绍的人物如此之多，列举印象作为深刻的 3 人：</p>
+<ul>
+<li><strong>严冬冬</strong>：清华肄业，高考状元，译者（翻译了《天生就会跑》等一众书籍或文章），一生都献给了攀登事业。与同为学霸的周鹏开创四姑娘山幺妹峰的“自由之舞”路线等多条路线。在新疆西天山托木尔地区下撤途中遇难。遇难前在个人微博发表了著名的免责声明。朋友为了纪念他，创立以他论坛 ID 命名的网站<a href="http://vstarloss.org">Vstarloss</a></li>
+</ul>
+<blockquote>
+<p>[!NOTE]</p>
+<p><strong>免责声明</strong></p>
+<p>　　<strong>我理解登山是一项本质上具有危险性的活动，可能导致严重受伤或死亡……我认为，如果在我自愿选择参与的登山活动过程中，因为任何并非我自己或同伴故意制造的原因(包括但不限于我自己不恰当的反应和举动，同伴不恰当的反应和举动，意料之外和意料之中的山区环境客观风险等)而发生严重受伤或死亡的情况，那么我的同伴不应当为此承担任何责任(包括但不限于解释和赔偿的责任)。</strong></p>
+<p>　<strong>——严冬冬</strong></p>
+</blockquote>
+<ul>
+<li><strong>Stanley</strong>：家境优渥，首位参与IFMGA 高山攀岩向导的中国（香港）人，因为攀岩的执着与家人关系恶化。最终遇难于喀拉库伦山脉（巴基斯坦）。而遇难年龄（27 岁）早就于几年前，被其母亲为找的算命人算到（也正是因此母子才关系恶化）</li>
+<li><strong>阿左</strong>：高考落榜。与朋友相约流浪，徒步到兰州，走到内蒙。简易轮胎黄河漂流了 300 公里到山西。当过捕鱼船员，最后回到成都机缘巧合成了领攀学校的工作人员。和昊昕的“梦幻高山”组合，首次视频完整记录了征服幺妹峰的过程 (<a href="https://www.bilibili.com/video/BV1zE411Y7GB/?spm_id_from=333.1387.upload.video_card.click&amp;vd_source=08ca15f6d71e2c2b0f87daf8f0ad9a77">B 站链接</a>)</li>
+</ul>
+<p>书中还介绍了更多的攀登者，他们的人生经历，思考彷徨。无法一一列举，推荐诸君一读。</p>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2>title: "ShengSiPiLao"
+status: public
+date: 2025-07-20</h2>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2>title: "大思维：我们如何创造与革新"
+status: public
+date: 2025-08-02</h2>
+<h1 id="大思维我们如何创造与革新"><a class="header" href="#大思维我们如何创造与革新">大思维：我们如何创造与革新</a></h1>
+<blockquote>
+<p>[!TIP]</p>
+<p><strong>阅读时间</strong>： 2025年7月</p>
+<p><strong>作者</strong>：希娜·艾扬格</p>
+</blockquote>
+<p>今年工作重心变成了几乎纯技术方向，负责的题目是为系统提供基础的软件框架服务。</p>
+<p>做得非常艰难。一切又像是天意，大老板的季度说明会上，推荐了这本英文名叫做《Think Bigger》的书。从题目看，冥冥之中是指引我如何我目前面临的问题。(p.s. 作者同时著有另外一本畅销书《选择的艺术》，也在我的书单上)。以下是速读一遍的快速笔记：</p>
+<h2 id="一创新是有方法和路径的"><a class="header" href="#一创新是有方法和路径的">一、创新是有方法和路径的</a></h2>
+<p>首先，作者引用坐落在曼哈顿码头自由女神像的例子，阐述了创新并非凭空出现，不是某个天才突发奇想的灵感；而是一切都是基于创新作者自己或者他人碎片化的创意、想法，产生的奇妙组合。如图，自由女神像的创作巴托尔迪分别从以下作品产生灵感：</p>
+<ul>
+<li>a. 古埃及的巨型墓葬雕塑</li>
+<li>b. 巴托尔迪本人的《埃及之光照耀亚洲》水彩画</li>
+<li>c. 儒勒·列斐伏尔创作的布面油画《真理女神》</li>
+<li>d. 一枚5法郎银币背面的罗马自由女神</li>
+<li>e. 巴托尔迪本人母亲的肖像</li>
+</ul>
+<p><img src="2025/images/statueOfLiberty.png" alt="StatueOfLiberty" /></p>
+<p>与此同时，作者还举了不同时期毕加索的画像风格的例子，阐述了毕加索印象派风格的形成，也是借鉴他人好的创意形成的有效组合。</p>
+<p>书中引用法国数学家庞加莱的一句话：</p>
+<blockquote>
+<p>“发明在于避免构建无用的组合，在于构建为数不多的有用组合……发明就是辨别，就是选择。”</p>
+</blockquote>
+<p>所谓<strong>大思维</strong>就像是如何利用已有知识组合产生新的创意的 SOP。也是接下来笔者本人希望借鉴和实践，希望可以解决自己目前面临的问题。</p>
+<p>简言之，利用大思维进行创新由以下六个步骤组成：</p>
+<ol>
+<li>选择问题</li>
+<li>分解问题</li>
+<li>比较需求</li>
+<li>在框内和框外搜索</li>
+<li>构建选择地图</li>
+<li>第三只眼测试</li>
+</ol>
+<p>本章的第2部分，作者阐述了以下几个与创新相关的研究结果，用于支撑大思维六个步骤的具体阐述：</p>
+<ol>
+<li>科学研究表明，人并没有左脑分析型或者右脑创意型之分。富有创造力的人和其他人的差异也许并不在左右脑的差异。</li>
+</ol>
+<blockquote>
+<p>[!NOTE]</p>
+<p>P.S. 笔者认为人的智力差异是存在的，但是认同者不代表天才之外的人无法创新</p>
+</blockquote>
+<ol start="2">
+<li>在创新的过程中，一个重要且不可或缺的点是保持好奇心和毅力。</li>
+</ol>
+<blockquote>
+<p>P.S. 笔者自觉本人毅力较差</p>
+</blockquote>
+<ol start="3">
+<li><strong>头脑风暴并不能对创新起直接作用</strong>，其起的真正作用是从参与者的直接经验中汲取灵感，换句话说，这是一种信息共享和呈现。因为“快，帮我想个创意”只能催生出现有知识经验框架内的想法组合，这对解决非创新类问题是有效的</li>
+<li>创造力的工作与周围环境无关，创新的工作环境只需要有一个独立思考的地方加上一个可以与他人随时相遇讨论的条件就好。</li>
+<li>我们更有可能工作中思考中产生有价值的顿悟（相较于思绪漫游）。创新的创造性组合都是日常记忆碎片的延续。</li>
+<li>在进行创新大思维的时候，尽量独自完成每一步。超过 5 人的团队思考创新结果往往拙劣于个人表现（所谓人多口杂，容易迷失。有些人也会倾向于沉默不语）。</li>
+<li>不要有过多的方案选择，一般 5 个为佳（选择过多人会认知过载，产生迷失）</li>
+</ol>
+<h2 id="二大思维六个步骤的具体解释"><a class="header" href="#二大思维六个步骤的具体解释">二、大思维六个步骤的具体解释</a></h2>
+<h3 id="选择问题"><a class="header" href="#选择问题">选择问题</a></h3>
+<blockquote>
+<p>“如果我有一个小时来解决一个问题，我会花55分钟思考问题，再花5分钟想出解决方案。 -- 爱因斯坦</p>
+</blockquote>
+<ul>
+<li>一个好的问题应该是找到自己通过努力可以找到答案（可解决）的</li>
+<li>写下问题是非常关键的，在你写下想法时，你实际上创造了你的想法 （因为这不免一定会有集中精力产生思考的过程）</li>
+</ul>
+<p>作者提供了一种选择有意义问题的方法：</p>
+<ol>
+<li>写下来自己能想到的想解决的所有问题</li>
+<li>记录写下自己感兴趣的事情或者知识</li>
+<li>找到自己日常关心的事情记录下来</li>
+</ol>
+<p>做完以上三步后，会有一个长长的问题清单。缩小清单范围，在清单中重复出现的问题就是要集中精力优先解决的。</p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>笔者认为：这应该只是你真的没有问题要解决时，需要做的步骤</p>
+</blockquote>
+<p>创新就是<strong>新颖的、有用的</strong>东西。没人想用的创新不是创新。因此选择问题时需要避免“错误的”问题。</p>
+<ul>
+<li>要解决的问题可能是个陈述句，需要可以把它变成 How？的问题，这样会触发思考</li>
+<li>对问题的陈述应该要足够开放，而不要在问题中预设条件（相当于暗示了解决问题的方案）</li>
+<li>人本身能力范围也是有限的，所以定义正确的问题是自己<strong>可以解决且有动力</strong>解决的。可以通过层次分析（step analysis）来扩大或者缩小范围找到对的问题
+<ul>
+<li>层次分析思考的过程也是找到解决问题途径的一种方式</li>
+</ul>
+</li>
+</ul>
+<p>这里最重要的是”你必须对一个想法、一个问题或一个你想要纠正的错误充满激情。如果你从一开始就没有足够的激情，你就永远无法坚持下去“。</p>
+<h3 id="分解问题"><a class="header" href="#分解问题">分解问题</a></h3>
+<ul>
+<li>主问题需要分解为子问题，解决了每一个子问题之后，主问题就迎刃而解。</li>
+<li>分解问题或者子问题不言自明切忌急于求成，深思熟虑，掌握大局观</li>
+</ul>
+<blockquote>
+<p>自己有点急于求成。原因还是没有毅力。</p>
+</blockquote>
+<ul>
+<li>分解子问题采用 MECE 原则（Mutual Exclusive 和 Comprehensive Exhasutive）</li>
+<li>分解子问题尽量列举越长越好的清单，保留最吸引自己的问题（删除无关紧要的问题），保留 4、5 个问题即好。</li>
+<li>跟不同人确定回答子问题问题是否足以解决原问题（不同角度的人会受到自己所知情况的束缚）。
+<ul>
+<li>可以请<strong>专家对分解的问题</strong>提出意见（要一对一讨论）</li>
+<li>可以<strong>跟用户了解</strong>实际体验，想法及感受</li>
+<li>跟没有在领域的人讨论。尽可能让其沉浸在对应领域，询问他们的想法（例如，书中盲人旅行的例子。跟普通人询问，假设你看不见，会希望怎样出行）</li>
+</ul>
+</li>
+<li><strong>分解问题不是一次分解</strong>就万事大吉了，需要不断修改，直到受访对象提供不了新的输入。
+<ul>
+<li>“80%测试”：如果我解决了这些子问题，那么我是否至少解决了整个问题的80%</li>
+</ul>
+</li>
+</ul>
+<h3 id="比较需求"><a class="header" href="#比较需求">比较需求</a></h3>
+<p>比较需求的目的是为了确认这个问题是真的值得解决的。人都是带主观情感的，至少考虑并确定三类不同利益相关者的需求：</p>
+<ul>
+<li>身为创新者的你:<strong>当我为我的问题创造理想的解决方案时，我想要什么样的感觉</strong></li>
+<li>目标群体: <strong>当我解决这个问题时，我希望我的目标群体有什么感觉</strong></li>
+<li>第三方（竞争对手和盟友）: 当我解决这个问题时，我希望我的第三方(老板？)有什么感觉?</li>
+</ul>
+<p>身为创新者的自己的需求是最重要的。</p>
+<p>建立大局评分，目的是作为你的选择标准，作为确保你走在正确道路上的检查标准。这要发生在你产生出可选择的方案之前。</p>
+<p><img src="2025/images/Requirement-Triangle.png" alt="image-20250730212756814" /></p>
+<h3 id="在框内和框外搜索"><a class="header" href="#在框内和框外搜索">在框内和框外搜索</a></h3>
+<p>搜索的目的是找到每个子问题的解法。当你拆解出正确的子问题后，在领域内或者领域外都是有类似先例的：</p>
+<ul>
+<li>领域内的最佳实践(谁过去成功解决过这个子问题？)</li>
+</ul>
+<blockquote>
+<p>笔者认为：好像很自然，当然要参考先例。</p>
+</blockquote>
+<ul>
+<li>
+<p>领域外是否有成功的先例。进行域外搜索的诀窍是进行以下三种搜索：</p>
+<ul>
+<li>不可知</li>
+<li>平行</li>
+<li>局部</li>
+</ul>
+<p>作者举的一个问题例子是：我们如何激励孩子学习数学？而其搜索的三个问题是：</p>
+<ul>
+<li>不可知：我们如何激励孩子学习？</li>
+<li>局部：我们如何激励孩子去做某件不令人兴奋的事呢？</li>
+<li>平行：我们如何激励孩子吃健康食物？</li>
+</ul>
+<p>领域外搜索的一个例子就是好莱坞女演员海蒂·拉玛借鉴自动钢琴原理发明了通信领域的跳频技术。</p>
+</li>
+</ul>
+<blockquote>
+<p>笔者注：就像查理芒格不断强调的“运用多学科思维”。</p>
+<p>笔者认为，无论域内域外搜索，即使身边没有专家，搜索引擎不容易直接找到答案。现在有了 AI 大模型加持之，域内域外搜索应该变得更加容易。</p>
+</blockquote>
+<ul>
+<li>
+<p>对每种策略，重点在于要有证据证明其优点。</p>
+</li>
+<li>
+<p>参考借鉴也是“策略性复制”，并不是复制全部。</p>
+</li>
+</ul>
+<p>书中提到，需要关注旧的想法，是因为新事物来的并没有那么快。那些被评判最有创意的想法都是平衡了熟悉度和新颖性的想法。</p>
+<blockquote>
+<p>个人认为：其实很多想法是受限于当时的技术条件没能实现。进一步讲，我们并没有比古人更聪明，我们现代社会发展到这种程度也是所有历史经验的积累，也是因为我们站在了巨人的肩膀上。包括现在很多技术，也被称为新瓶装旧酒，其实也是对旧想法的借鉴。</p>
+</blockquote>
+<p>使用创意协助来拓宽思路：可以通过和人一对一请教，直接提出你的问题。关键是需要注意如何结束与每个人的谈话。</p>
+<p><img src="2025/images/SolutionExample.png" alt="image-20250731215427525" /></p>
+<h3 id="构建选择地图"><a class="header" href="#构建选择地图">构建选择地图</a></h3>
+<ul>
+<li>选择地图的目的是构建为数不多的有用组合，不要假设某些组合无法搭配使用</li>
+<li>要慢慢来 不要急。实验证明多次思考往往在第二轮思考新颖创意最多</li>
+<li>刻意施加创意要求 往往增加无形压力而适得其反。创意等于已存方案的有效组合恰好减轻了这种压力</li>
+<li>保持开放心态 才能更多的域外搜索</li>
+<li>如何组合策略？随机，至少产生三种有用组合，并对齐产生大局评分</li>
+</ul>
+<blockquote>
+<p>笔者认为这就像是撞大运</p>
+</blockquote>
+<h3 id="第三只眼测试"><a class="header" href="#第三只眼测试">第三只眼测试</a></h3>
+<ul>
+<li>第三只眼测试的目的不是为了说服，也不是为了获取潜在支持。是为了接受反馈，改进想法。</li>
+<li>除了接受他人的反馈，也需要自己几下想法，不断的复述，自我思考重复。目的是在复述过程中完善想法（说、听、想结合）。</li>
+<li>与领域内专家讨论，提问（可行与不可行部分，如何改进）。讨论后立即分析谈话，查漏补缺</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2>title: "早安，怪物"
+status: public
+date: 2025-09-07</h2>
+<h1 id="早安怪物"><a class="header" href="#早安怪物">早安，怪物</a></h1>
+<blockquote>
+<p>[!NOTE]</p>
+<p><strong>阅读时间</strong>： 2025年 8月 ~ 9月</p>
+<p><strong>作者</strong>：（加拿大）凯瑟琳.吉尔迪纳</p>
+</blockquote>
+<p>这是一本记录作者从业心理医生 20 多年来的五位患者的就诊故事。</p>
+<p>这五位患者均在童年经受了巨大的心理创伤，严重影响自我认知，对成年后的生活产生了严重的负面影响。他们均通过的心理治疗，勇敢直面自己的创伤，战胜了心理病魔，重新找回了正常的人际关系。</p>
+<blockquote>
+<p>书名来自书中记录的最后一个患者玛德琳（女），出身富裕家庭，父亲是成功的商人。而其母亲是一个极度自我且控制欲极强的人，在其小的时候会强迫玛德琳少进食，并用“早安，怪物”和她打招呼。不仅如此、出轨他人、勾引玛德琳的初恋男友上床，最终和其父亲离婚。</p>
+<p>玛德琳父亲也没有给予玛德琳足够的支持和保护，整个家庭只能一起感受其母亲的强力压迫，忍气吞声，躲在地下室和玛德琳一起神伤。</p>
+<p>成年后，玛德琳放弃了继承家族财产，但沿袭着和家族一样的古董生意，并创造超出其家族财产的财富。但是其却有严重的飞行恐惧症，总是担心飞机失事，不让自己甚至不让信赖的员工坐飞机去谈生意。玛德琳是个奋斗狂、工作狂，因为透支的免疫系统，年纪轻轻却先后经历了四种癌症（甲状腺癌，黑色素瘤，乳腺癌，子宫内膜癌）的折磨。</p>
+<p>玛德琳的一切心里问题都源于其失职的母亲夏洛特给其带来的痛苦童年经历。而玛德琳母亲的错误行为，经过分析则源于其外祖母的在其母亲年轻时，仅仅是将其母亲当成婚嫁改变家族命运的工具。除非玛德琳母亲得到权贵青睐，否则不被允许回家过夜。夏洛特缺失的健康童年和亲子关系，相应也投射到了玛德琳本人身上。作者使用动物园黑猩猩母亲的例子解释了这一原因。</p>
+<p>在作者的治疗下，玛德琳学会将工作下派（不必亲力亲为），与母亲仅保持最小限度的接触，并与一直默默守护在自己身边的下属、同事安东在一起快乐幸福生活下去。</p>
+</blockquote>
+<p>书中还有其他四个故事，所有故事均以第一人称叙事记录，不乏味但因为故事本身涉及到童年创伤，因此并不轻松。读完后引发对自己的性格弱点以及童年经历关联的思考，推荐阅读。</p>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2>title: "心流"
+status: public
+date: 2025-10-16</h2>
+<h1 id="心流"><a class="header" href="#心流">心流</a></h1>
+<blockquote>
+<p>[!NOTE]</p>
+<p><strong>阅读时间</strong>： 2025年10月</p>
+<p><strong>作者</strong>：米哈里.契克森米哈顿</p>
+</blockquote>
+<p>读这本书是<a href="2025/Renzhijuexing.html">认知觉醒</a>这本书中介绍。</p>
+<p>书的英文原名叫 &lt;Flow: The Psychology of Optimal Experience&gt;，直译是<strong>最优体验的心理学阐释</strong>。而所谓最优体验，就是快乐和幸福的感受。</p>
+<p>个人总结：简言之，人在全身心投入到一件事情，且不受旁骛干扰时就是所谓的心流，即更容易有幸福感的体验。</p>
+<p>书中从理论介绍了构成心流体验的要素，同时也总结了日常生活中哪些活动比较容易获取心流体验。作者的实验调研结果表明，人在做大多数人直觉上最令人生厌的工作时，反而比闲暇时更容易获取心流体验，这大大出乎我的意料。</p>
+<p>本书给我的最大帮助是：即学即用第六章《思维之乐》提到的“挖掘历史宝藏”，和爱人一起发旧照片，猜拍摄地点，的确都获得了舒适开心的体验。</p>
+<p>从书中得到的收获如下：</p>
+<ul>
+<li>有很多可以制造幸福感快乐感的方式（运动-包括性、猜谜、美食、音乐、回忆、科学研究、人际交往），都值得尝试，当然要找到适合自己的方式。</li>
+<li>要有清晰的人生目标才更容易有心流体验，屏蔽纷繁咨询的干扰（这个信息爆炸的时代，干扰太多了）。</li>
+<li>自身的体验往往取决于个人看待问题的方式，而不在于事情本身。越是情况紧急时，越应该冷静（自己明知是对的，遇到对应情况却难以克服内心的焦虑感）</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2>title: "世界上为什么要有图书馆"
+status: public
+date: 2025-11-23</h2>
+<h1 id="世界上为什么要有图书馆"><a class="header" href="#世界上为什么要有图书馆">世界上为什么要有图书馆</a></h1>
+<blockquote>
+<p><strong>阅读时间</strong>： 2025年 11月</p>
+<p><strong>作者</strong>：杨素秋</p>
+</blockquote>
+<p>本书叙述了作者本人（陕西科技大学教师），到西安市碑林区文化旅游局挂职副局长一年中，和图书馆长一起主持建起区图书馆的经历。</p>
+<p>初到岗位，作者除了对官场规则的不适应，更错愕的是碑林区做为西安市的核心城区，居然一直都没有图书馆。作者挂职之前，才开始筹建，而且原选址因为新发掘出文物（十三朝古都，随手一挖，可能既要请来考古对），只能选取一块地下场地作为过渡。</p>
+<p>建设过程需要解决两种问题：</p>
+<ol>
+<li>装修问题：克服各种电线裸漏，排污管道漏水气味问题，考虑如何让读者感到便利、装修招标、以及同装修公司、装修队各方交涉确保装修进度按时进行。</li>
+<li>选书问题：如何选到合适的建馆书籍，需要和各种书商打交道、精选合适的书籍条目。</li>
+</ol>
+<p>选书问题尤为重要：各色书商发来书单，充斥着各种五花八门的三流作者、三流出版社或者三流译者的烂书。作者恍然大悟：图书馆是公益场所，不赚钱，塞些“坏”书进来不影响图书馆“业绩”，反而会增加书商利润，于是，图书馆成为某些书商的库存倾销处。作者最后亲自选取书单，加书商的书单合并后最为首批馆藏书籍。</p>
+<p>开馆前，作者的一篇公众号文章《花了半年时间，我们在西安市中心建了一座不网红的图书馆》成为热门文章，也因此作者被单位上级贴上了“个人英雄主义”的标签，文章还被纳入了“政府舆情”群，最后因为央视新闻周刊的报道认可被“平反”。但是单位里人却被要求不能转发央视链接，以免“领导不高兴”。</p>
+<p>不仅如此，作者挂职结束前为图书馆补充新的书目，因为选取的书籍没有给某领导从中牟利赚取好处的机会，被领导卡着不签字。</p>
+<blockquote>
+<p>中间人又来了，说：“书目去掉百分之四十，总该可以吧？一百多万的百分之四十，才几十万嘛。”
+我很想问他：“你代表哪个领导？你说，我开录音键录下来。我凭什么相信你和领导的关系？你让领导亲自给我打电话，我来跟领导解释。”
+这些话在我心里倒腾了一会儿，我又按下去了。我只是说：“不可以。按照往年规矩，书籍有破损或者缺货可能，我们在合同里写明配货率95%，也就是误差率5%，现在我顶多让步到误差率10%，但绝不可能误差率40%。”
+他撂下一句话走了：“10%不够我和领导分的，40%才够。你掂量。”</p>
+</blockquote>
+<h3 id="书中提到的书单"><a class="header" href="#书中提到的书单">书中提到的书单</a></h3>
+<p><strong>童书（含漫画）：</strong>《安徒生童话》《镖人》《冰菓》《查理和巧克力工厂》《虫师》《宠物小精灵》《窗边的小豆豆》《吹小号的天鹅》《丁丁历险记》《高达》《给孩子的故事》《灌篮高手》《哈利·波特》《海贼王》《汉声中国童话》《荷花镇的早市》《黑子的篮球》《护生画集》《火影忍者》《精灵鼠小弟》《可怕的科学》《拉比的猫》《了不起的狐狸爸爸》《龙珠Z》《玛蒂尔达》《玛法达》《名侦探柯南》《排球少年》《七龙珠》《棋魂》《犬夜叉》《三毛流浪记》《圣斗士》《死神》《死亡笔记》《四月是你的谎言》《太空》《网球王子》《文豪野犬》《希利尔给孩子的艺术史》《夏洛的网》《夏目友人帐》《写给孩子的哲学启蒙书》《银魂》《幽游白书》《月刊少女野崎君》
+<strong>文学类</strong>：《奥德赛》《白鹿原》《冰与火之歌》《查令十字街84号》《传学》《东周列国志》《读库》《儿女英雄传》《反骨仔》《废都》《古文观止》《哈克贝利·费恩历险记》《海边的卡夫卡》《海底两万里》《汉字王国》《红楼梦》《活着》《基督山伯爵》《卡拉马佐夫兄弟》《克林索尔的最后夏天》《老人与海》《礼物》《裂缝》《流言》《鲁滨孙漂流记》《鲁迅全集》《论语》《罗生门》《麦田守望者》《魔戒》《墓法墓天》《那不勒斯四部曲》《挪威的森林》《胚胎奇谭》《契诃夫文集》《人间词话》《人间喜剧》《三国演义》《三体》《诗的八堂课》《诗歌手册》《诗经》《史记》《世说新语》《鼠疫》《太平广记》《汤姆·索亚历险记》《唐诗别裁》《唐诗三百首》《天龙八部》《推拿》《文苑英华》《我弥留之际》《西南联大国文课》《献给阿尔吉侬的花束》《小城之恋》《小说课》《西南联大国文课》《写作法宝》《伊利亚特》《阴阳师》《银河帝国》《酉阳杂俎》《战国争鸣记》《朝花夕拾》《正常人》《纸牌屋》《最后一个匈奴》《左传》《作文七巧》</p>
+<p><strong>人文社科</strong>：《1844年经济学哲学手稿》《奥斯威辛：一部历史》《奥义书》《巴尔扎克传》《保卫马克思》《藏在碑林里的国宝》《册府元龟》《纯粹理性批判》《丛书集成》《大藏经》《抵抗的群体》《第二性》《洞穴奇案》《对影胡说》《二十四史》《二手时间》《佛家名相通释》《傅山的世界》《伽利略传》《关于他人的痛苦》《观看之道》《汉字书法之美》《汉字王国》《汉字与文物的故事》《黑镜头》《黄泉下的美术——宏观中国古代墓葬》《火车上的中国人》《基督教神学原理》《基督教要义》《加德纳艺术通史》《剑桥中国史》《咖啡厅、餐馆内景实例》《康德传》《旷野呼告》《拉丁美洲被切开的血管》《蓝色血脉》《劳特里奇哲学史》《理解一张照片》《理想城市》《另一种讲述的方式——一个可能的摄影理论》《伦理学》《论摄影》《毛以后的中国》《美术、神话与祭祀》《明朝那些事儿》《墨庄漫录》《纽约摄影学院摄影教材》《欧洲大学史》《破〈破新唯识论〉》《囚徒的困境》《让房子与你的灵魂契合》《人类简史》《如何建造美好家园》《撒马尔罕的金桃——唐代舶来品研究》《僧侣与哲学家》《送法下乡》《山川悠远——中国山水画艺术》《设计中的设计》《摄影哲学的思考》《身体·性别·摄影》《神话学》《生活与命运》《圣经·旧约》《圣经·新约》《世界摄影史》《世界摄影艺术史》《世界通史》《市井西仓》《私人生活史》《斯宾诺莎导读》《四库全书》《俗世威尔》《涑水记闻》《太平御览》《天真的人类学家》《同性恋亚文化》《图书馆入门》《完美店铺设计指南》《唯识二十论》《为什么我不是基督教徒》《未来简史》《文字的力与美》《无知的教师》《乡土中国》《湘山野录》《新教伦理与资本主义精神》《新唯识论》《新游牧民》《幸运者——一位乡村医生的故事》《修剪菩提树：批判“佛教”的风暴》《雅典与耶路撒冷》《艺术哲学》《隐士建筑》《永字八法》《犹太教——一种生活之道》《与古为徒和娟娟发屋》《与小泽征尔共度的午后音乐时光》《造型的诞生》《怎样阅读照片》《詹森艺术史》《正面管教》《知日》《直角之诗》《纸上纪录片》《中国碑帖名品》《中国摄影史》《中国照相馆史》《宗教生活的基本形式》《走向新建筑》
+自然科学：《别逗了，费曼先生》《城市自然故事》《从一到无穷大》《地球编年史》《第三种黑猩猩》《哥德尔、艾舍尔、巴赫——集异璧之大成》《给忙碌者的天体物理学》《给年轻科学家的信》《果壳中的宇宙》《剑桥科学史》《科学的历程》《盲眼钟表匠》《上帝掷骰子吗？——量子物理史话》《什么是科学》《实验室女孩》《贪婪的多巴胺》《物理世界奇遇记》《现实不似你所见》《园丁的一年》《云彩收集者手册》《杂草的故事》《怎样观察一棵树》《这里是中国》《自私的基因》
+<strong>其他系列书</strong>：
+金庸作品集
+“梁庄”系列
+“玛格南”系列影集
+“牛津树”系列
+“培生”系列
+“外研社”系列
+“中国纪实三部曲”系列</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>世界上为什么要有图书馆 - 读书笔记</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="Lambert 的读书笔记：读过的书，留下的字。">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">读书笔记</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://reader.lambert.wang" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <hr />
+<h2>title: "世界上为什么要有图书馆"
+status: public
+date: 2025-11-23</h2>
+<h1 id="世界上为什么要有图书馆"><a class="header" href="#世界上为什么要有图书馆">世界上为什么要有图书馆</a></h1>
+<blockquote>
+<p><strong>阅读时间</strong>： 2025年 11月</p>
+<p><strong>作者</strong>：杨素秋</p>
+</blockquote>
+<p>本书叙述了作者本人（陕西科技大学教师），到西安市碑林区文化旅游局挂职副局长一年中，和图书馆长一起主持建起区图书馆的经历。</p>
+<p>初到岗位，作者除了对官场规则的不适应，更错愕的是碑林区做为西安市的核心城区，居然一直都没有图书馆。作者挂职之前，才开始筹建，而且原选址因为新发掘出文物（十三朝古都，随手一挖，可能既要请来考古对），只能选取一块地下场地作为过渡。</p>
+<p>建设过程需要解决两种问题：</p>
+<ol>
+<li>装修问题：克服各种电线裸漏，排污管道漏水气味问题，考虑如何让读者感到便利、装修招标、以及同装修公司、装修队各方交涉确保装修进度按时进行。</li>
+<li>选书问题：如何选到合适的建馆书籍，需要和各种书商打交道、精选合适的书籍条目。</li>
+</ol>
+<p>选书问题尤为重要：各色书商发来书单，充斥着各种五花八门的三流作者、三流出版社或者三流译者的烂书。作者恍然大悟：图书馆是公益场所，不赚钱，塞些“坏”书进来不影响图书馆“业绩”，反而会增加书商利润，于是，图书馆成为某些书商的库存倾销处。作者最后亲自选取书单，加书商的书单合并后最为首批馆藏书籍。</p>
+<p>开馆前，作者的一篇公众号文章《花了半年时间，我们在西安市中心建了一座不网红的图书馆》成为热门文章，也因此作者被单位上级贴上了“个人英雄主义”的标签，文章还被纳入了“政府舆情”群，最后因为央视新闻周刊的报道认可被“平反”。但是单位里人却被要求不能转发央视链接，以免“领导不高兴”。</p>
+<p>不仅如此，作者挂职结束前为图书馆补充新的书目，因为选取的书籍没有给某领导从中牟利赚取好处的机会，被领导卡着不签字。</p>
+<blockquote>
+<p>中间人又来了，说：“书目去掉百分之四十，总该可以吧？一百多万的百分之四十，才几十万嘛。”
+我很想问他：“你代表哪个领导？你说，我开录音键录下来。我凭什么相信你和领导的关系？你让领导亲自给我打电话，我来跟领导解释。”
+这些话在我心里倒腾了一会儿，我又按下去了。我只是说：“不可以。按照往年规矩，书籍有破损或者缺货可能，我们在合同里写明配货率95%，也就是误差率5%，现在我顶多让步到误差率10%，但绝不可能误差率40%。”
+他撂下一句话走了：“10%不够我和领导分的，40%才够。你掂量。”</p>
+</blockquote>
+<h3 id="书中提到的书单"><a class="header" href="#书中提到的书单">书中提到的书单</a></h3>
+<p><strong>童书（含漫画）：</strong>《安徒生童话》《镖人》《冰菓》《查理和巧克力工厂》《虫师》《宠物小精灵》《窗边的小豆豆》《吹小号的天鹅》《丁丁历险记》《高达》《给孩子的故事》《灌篮高手》《哈利·波特》《海贼王》《汉声中国童话》《荷花镇的早市》《黑子的篮球》《护生画集》《火影忍者》《精灵鼠小弟》《可怕的科学》《拉比的猫》《了不起的狐狸爸爸》《龙珠Z》《玛蒂尔达》《玛法达》《名侦探柯南》《排球少年》《七龙珠》《棋魂》《犬夜叉》《三毛流浪记》《圣斗士》《死神》《死亡笔记》《四月是你的谎言》《太空》《网球王子》《文豪野犬》《希利尔给孩子的艺术史》《夏洛的网》《夏目友人帐》《写给孩子的哲学启蒙书》《银魂》《幽游白书》《月刊少女野崎君》
+<strong>文学类</strong>：《奥德赛》《白鹿原》《冰与火之歌》《查令十字街84号》《传学》《东周列国志》《读库》《儿女英雄传》《反骨仔》《废都》《古文观止》《哈克贝利·费恩历险记》《海边的卡夫卡》《海底两万里》《汉字王国》《红楼梦》《活着》《基督山伯爵》《卡拉马佐夫兄弟》《克林索尔的最后夏天》《老人与海》《礼物》《裂缝》《流言》《鲁滨孙漂流记》《鲁迅全集》《论语》《罗生门》《麦田守望者》《魔戒》《墓法墓天》《那不勒斯四部曲》《挪威的森林》《胚胎奇谭》《契诃夫文集》《人间词话》《人间喜剧》《三国演义》《三体》《诗的八堂课》《诗歌手册》《诗经》《史记》《世说新语》《鼠疫》《太平广记》《汤姆·索亚历险记》《唐诗别裁》《唐诗三百首》《天龙八部》《推拿》《文苑英华》《我弥留之际》《西南联大国文课》《献给阿尔吉侬的花束》《小城之恋》《小说课》《西南联大国文课》《写作法宝》《伊利亚特》《阴阳师》《银河帝国》《酉阳杂俎》《战国争鸣记》《朝花夕拾》《正常人》《纸牌屋》《最后一个匈奴》《左传》《作文七巧》</p>
+<p><strong>人文社科</strong>：《1844年经济学哲学手稿》《奥斯威辛：一部历史》《奥义书》《巴尔扎克传》《保卫马克思》《藏在碑林里的国宝》《册府元龟》《纯粹理性批判》《丛书集成》《大藏经》《抵抗的群体》《第二性》《洞穴奇案》《对影胡说》《二十四史》《二手时间》《佛家名相通释》《傅山的世界》《伽利略传》《关于他人的痛苦》《观看之道》《汉字书法之美》《汉字王国》《汉字与文物的故事》《黑镜头》《黄泉下的美术——宏观中国古代墓葬》《火车上的中国人》《基督教神学原理》《基督教要义》《加德纳艺术通史》《剑桥中国史》《咖啡厅、餐馆内景实例》《康德传》《旷野呼告》《拉丁美洲被切开的血管》《蓝色血脉》《劳特里奇哲学史》《理解一张照片》《理想城市》《另一种讲述的方式——一个可能的摄影理论》《伦理学》《论摄影》《毛以后的中国》《美术、神话与祭祀》《明朝那些事儿》《墨庄漫录》《纽约摄影学院摄影教材》《欧洲大学史》《破〈破新唯识论〉》《囚徒的困境》《让房子与你的灵魂契合》《人类简史》《如何建造美好家园》《撒马尔罕的金桃——唐代舶来品研究》《僧侣与哲学家》《送法下乡》《山川悠远——中国山水画艺术》《设计中的设计》《摄影哲学的思考》《身体·性别·摄影》《神话学》《生活与命运》《圣经·旧约》《圣经·新约》《世界摄影史》《世界摄影艺术史》《世界通史》《市井西仓》《私人生活史》《斯宾诺莎导读》《四库全书》《俗世威尔》《涑水记闻》《太平御览》《天真的人类学家》《同性恋亚文化》《图书馆入门》《完美店铺设计指南》《唯识二十论》《为什么我不是基督教徒》《未来简史》《文字的力与美》《无知的教师》《乡土中国》《湘山野录》《新教伦理与资本主义精神》《新唯识论》《新游牧民》《幸运者——一位乡村医生的故事》《修剪菩提树：批判“佛教”的风暴》《雅典与耶路撒冷》《艺术哲学》《隐士建筑》《永字八法》《犹太教——一种生活之道》《与古为徒和娟娟发屋》《与小泽征尔共度的午后音乐时光》《造型的诞生》《怎样阅读照片》《詹森艺术史》《正面管教》《知日》《直角之诗》《纸上纪录片》《中国碑帖名品》《中国摄影史》《中国照相馆史》《宗教生活的基本形式》《走向新建筑》
+自然科学：《别逗了，费曼先生》《城市自然故事》《从一到无穷大》《地球编年史》《第三种黑猩猩》《哥德尔、艾舍尔、巴赫——集异璧之大成》《给忙碌者的天体物理学》《给年轻科学家的信》《果壳中的宇宙》《剑桥科学史》《科学的历程》《盲眼钟表匠》《上帝掷骰子吗？——量子物理史话》《什么是科学》《实验室女孩》《贪婪的多巴胺》《物理世界奇遇记》《现实不似你所见》《园丁的一年》《云彩收集者手册》《杂草的故事》《怎样观察一棵树》《这里是中国》《自私的基因》
+<strong>其他系列书</strong>：
+金庸作品集
+“梁庄”系列
+“玛格南”系列影集
+“牛津树”系列
+“培生”系列
+“外研社”系列
+“中国纪实三部曲”系列</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../2025/Flow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../2025/Flow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
